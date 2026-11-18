@@ -139,7 +139,8 @@ resource "aws_alb_listener_rule" "alb_listener_rules" {
       dynamic "source_ip" {
         for_each = condition.value.source_ip != null ? [condition.value.source_ip] : []
         content {
-          values = source_ip.value.values
+          ip_address_type = source_ip.value.ip_address_type
+          values          = source_ip.value.values
         }
       }
     }

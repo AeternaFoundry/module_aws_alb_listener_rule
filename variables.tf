@@ -70,7 +70,8 @@ Required:
             - key (optional)
             - value (required)
         - source_ip (optional, block):
-            - values (required)
+            - ip_address_type (optional)
+            - values (optional)
 Optional:
     - priority
     - region
@@ -176,7 +177,8 @@ EOT
         value = string
       })))
       source_ip = optional(object({
-        values = set(string)
+        ip_address_type = optional(string)
+        values          = optional(set(string))
       }))
     }))
     transform = optional(list(object({
@@ -267,6 +269,6 @@ EOT
     ])
     error_message = "must be between 0 and 1024 characters"
   }
-  # Note: 33 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 34 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
